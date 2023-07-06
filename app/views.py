@@ -33,24 +33,25 @@ def home(request):
 def crawlbase_api(url):
     whole_context = {}
     context = {}
-    url = quote_plus(url)
-    api_url = f'https://api.crawlbase.com/?token=W264dTzZkuGre1nd2a6YLA&url={url}&scraper=instagram-profile'
+    # url = quote_plus(url)
+    # api_url = f'https://api.crawlbase.com/?token=W264dTzZkuGre1nd2a6YLA&url={url}&scraper=instagram-profile'
 
-    response = requests.get(api_url)
+    # response = requests.get(api_url)
 
-    print(response.status_code)  # HTTP status code
-    json_resp = response.json()
-    print(json_resp)  # Response content as text
+    # print(response.status_code)  # HTTP status code
+    # json_resp = response.json()
+    # print(json_resp)  # Response content as text
 
-    posts = json_resp['body']['posts']
-    cnt = 0
-    for post in posts:
+    # posts = json_resp['body']['posts']
+    # cnt = 0
+    # for post in posts:
  
-        print(post['image'])
-        context[post['image']] = 'image'
-        cnt+=1
-        if cnt==5:
-             break
+    #     print(post['image'])
+    #     context[post['image']] = 'image'
+    #     cnt+=1
+    #     if cnt==5:
+    #          break
+    context['https://instagram.fccu1-2.fna.fbcdn.net/v/t51.2885-15/357768070_648586263855491_7640280198118386154_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=instagram.fccu1-2.fna.fbcdn.net&_nc_cat=1&_nc_ohc=p6kJS1a2mzIAX_HGey2&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBYOkaPiR0l2XPu3DJZaEooCsDGYUHt4rNmJk8ENZaxoQ&oe=64AB0D8C&_nc_sid=8b3546'] = 'image'
     # instascrapeway()
     whole_context['context'] = context
 
