@@ -10,7 +10,4 @@
             "dest": "instagramtool/wsgi.py"
         }
     ],
-    "functions": {
-        "timeout": 30
-  }
 }
