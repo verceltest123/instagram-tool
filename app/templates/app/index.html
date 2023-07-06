@@ -263,11 +263,11 @@
     <div data-slide="slide" class="slide">
         <div class="slide-items">
             {% for key, value in context.items %}
-            {% if value == 'image' %}
-            <img src="{{ key }}" alt="Image">
+            {% if key == 'image' %}
+            <img src="{{ value }}" alt="Image">
             {% else %}
             <video class="myVideo" autoplay muted>
-                <source src="{{ key }}" type="video/mp4">
+                <source src="{{ value }}" type="video/mp4">
             </video>
             {% endif %}
             {% endfor %}
