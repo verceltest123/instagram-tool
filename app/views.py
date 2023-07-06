@@ -17,18 +17,23 @@ L = instaloader.Instaloader()
 
 def home(request):
     context =  {}
-    # if request.method == 'POST':
-    #     form = MyForm(request.POST)
-    #     if form.is_valid():
-    #         input_text = form.cleaned_data['input_text']
-    #         username = input_text.split("/")[-2]
-    #         context = instascrapeway(username)
-    # else:
-    #     form = MyForm()
-    # context['form'] = form
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            input_text = form.cleaned_data['input_text']
+            # username = input_text.split("/")[-2]
+            context = crawlbase_api(input_text)
+    else:
+        form = MyForm()
+    context['form'] = form
 
-    # return render(request, 'app/index.html', context)
-    url = quote_plus('https://www.instagram.com/apple/')
+    return render(request, 'app/index.html', context)
+
+
+def crawlbase_api(url):
+    whole_context = {}
+    context = {}
+    url = quote_plus(url)
     api_url = f'https://api.crawlbase.com/?token=W264dTzZkuGre1nd2a6YLA&url={url}&scraper=instagram-profile'
 
     response = requests.get(api_url)
@@ -47,7 +52,9 @@ def home(request):
         if cnt==5:
              break
     # instascrapeway()
-    return render(request, 'app/index.html', {'context' : context})
+    whole_context['context'] = context
+
+    return whole_context
 
 
 def instascrapeway(username):
