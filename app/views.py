@@ -7,6 +7,9 @@ import os
 import requests
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
+import requests
+from urllib.parse import quote_plus
+
 # Get instance
 L = instaloader.Instaloader()
 
@@ -14,22 +17,44 @@ L = instaloader.Instaloader()
 
 def home(request):
     context =  {}
-    if request.method == 'POST':
-        form = MyForm(request.POST)
-        if form.is_valid():
-            input_text = form.cleaned_data['input_text']
-            username = input_text.split("/")[-2]
-            context = instascrapeway(username)
-    else:
-        form = MyForm()
-    context['form'] = form
+    # if request.method == 'POST':
+    #     form = MyForm(request.POST)
+    #     if form.is_valid():
+    #         input_text = form.cleaned_data['input_text']
+    #         username = input_text.split("/")[-2]
+    #         context = instascrapeway(username)
+    # else:
+    #     form = MyForm()
+    # context['form'] = form
 
-    return render(request, 'app/index.html', context)
+    # return render(request, 'app/index.html', context)
+    url = quote_plus('https://www.instagram.com/apple/')
+    api_url = f'https://api.crawlbase.com/?token=W264dTzZkuGre1nd2a6YLA&url={url}&scraper=instagram-profile'
+
+    response = requests.get(api_url)
+
+    print(response.status_code)  # HTTP status code
+    json_resp = response.json()
+    print(json_resp)  # Response content as text
+
+    posts = json_resp['body']['posts']
+    cnt = 0
+    for post in posts:
+ 
+        print(post['image'])
+        context[post['image']] = 'image'
+        cnt+=1
+        if cnt==5:
+             break
     # instascrapeway()
-    # return render(request, 'app/index.html')
+    return render(request, 'app/index.html', {'context' : context})
 
 
 def instascrapeway(username):
+
+    L = instaloader.Instaloader()
+
+    L.login("fortcony", "Gasttozz123@") 
     whole_context = {}
     context = {}
     profile = instaloader.Profile.from_username(L.context, username)
@@ -141,3 +166,5 @@ def home2(request):
         form = MyForm()
 
     return render(request, 'app/index.html', {'form': form})
+
+
