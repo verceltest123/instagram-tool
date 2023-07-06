@@ -9,5 +9,8 @@
             "src": "/(.*)",
             "dest": "instagramtool/wsgi.py"
         }
-    ]
+    ],
+    "functions": {
+        "timeout": 20
+  }
 }
