@@ -259,12 +259,12 @@
         <button type="submit">Submit</button>
     </form>
 
-    <img src="https://instagram.fccu1-2.fna.fbcdn.net/v/t51.2885-15/357768070_648586263855491_7640280198118386154_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=instagram.fccu1-2.fna.fbcdn.net&_nc_cat=1&_nc_ohc=p6kJS1a2mzIAX_HGey2&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBYOkaPiR0l2XPu3DJZaEooCsDGYUHt4rNmJk8ENZaxoQ&oe=64AB0D8C&_nc_sid=8b3546" alt="Image">
+    <!-- <img src="https://hello-world-silent-bar-709f.djordje2023email.workers.dev/?image_url=https%3A%2F%2Finstagram.fccu1-2.fna.fbcdn.net%2Fv%2Ft51.2885-15%2F357768070_648586263855491_7640280198118386154_n.jpg%3Fstp%3Ddst-jpg_e35_p1080x1080%26_nc_ht%3Dinstagram.fccu1-2.fna.fbcdn.net%26_nc_cat%3D1%26_nc_ohc%3Dp6kJS1a2mzIAX_HGey2%26edm%3DAOQ1c0wBAAAA%26ccb%3D7-5%26oh%3D00_AfBYOkaPiR0l2XPu3DJZaEooCsDGYUHt4rNmJk8ENZaxoQ%26oe%3D64AB0D8C%26_nc_sid%3D8b3546" alt="Image"> -->
     <div data-slide="slide" class="slide">
         <div class="slide-items">
             {% for key, value in context.items %}
             {% if value == 'image' %}
-            <img src="{{ key }}" alt="Image">
+            <img src="https://hello-world-silent-bar-709f.djordje2023email.workers.dev/?image_url={{ key }}" alt="Image">
             {% else %}
             <video class="myVideo" autoplay muted>
                 <source src="{{ key }}" type="video/mp4">
